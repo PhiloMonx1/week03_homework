@@ -8,4 +8,5 @@ import java.util.List;
 
 public interface BlogRepository extends JpaRepository<Blog, Long> {
 	List<Blog> findAllByModifiedAtBetweenOrderByModifiedAtDesc(LocalDateTime start, LocalDateTime end);
+//	List<Blog> findAllByModifiedAtBetweenOrderByModifiedAtDesc();
 }

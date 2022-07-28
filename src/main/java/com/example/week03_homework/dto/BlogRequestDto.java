@@ -6,8 +6,8 @@ import lombok.RequiredArgsConstructor;
 @Getter
 @RequiredArgsConstructor
 public class BlogRequestDto {
-	private final String name;
-	private final String title;
-	private final String content;
-	private final String password;
+	private String name;
+	private String title;
+	private String content;
+	private String password;
 }

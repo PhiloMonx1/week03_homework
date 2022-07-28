@@ -3,6 +3,7 @@ package com.example.week03_homework.contorller;
 import com.example.week03_homework.domain.Blog;
 import com.example.week03_homework.dto.BlogPwDto;
 import com.example.week03_homework.dto.BlogRequestDto;
+import com.example.week03_homework.dto.BlogResponseDto;
 import com.example.week03_homework.repository.BlogRepository;
 import com.example.week03_homework.service.BlogService;
 import lombok.RequiredArgsConstructor;
@@ -19,12 +20,19 @@ public class BlogController {
 	private final BlogService blogService;
 
 
+//	@GetMapping("/api/post")
+//	public List<Blog> getBlogsAll(){
+//		LocalDateTime start = LocalDateTime.now().minusDays(1);
+//		LocalDateTime end = LocalDateTime.now();
+//		return blogRepository.findAllByModifiedAtBetweenOrderByModifiedAtDesc(start, end);
+////		return blogRepository.findAllByModifiedAtBetweenOrderByModifiedAtDesc();
+//	}
+
 	@GetMapping("/api/post")
-	public List<Blog> getBlogsAll(){
-		LocalDateTime start = LocalDateTime.now().minusDays(1);
-		LocalDateTime end = LocalDateTime.now();
-		return blogRepository.findAllByModifiedAtBetweenOrderByModifiedAtDesc(start, end);
+	public List<BlogResponseDto> getBoards() {
+		return blogService.readList();
 	}
+
 	@GetMapping("/api/post/{id}")
 	public Optional<Blog> getBlogByid(@PathVariable Long id){
 		  blogRepository.findById(id);
