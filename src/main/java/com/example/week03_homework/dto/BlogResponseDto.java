@@ -13,13 +13,13 @@ public class BlogResponseDto {
 	private LocalDateTime modifiedAt;
 	private Long id;
 	private String name;
-	private String title1;
+	private String title;
 
 	public BlogResponseDto(Blog blog) {
 		this.createdAt = blog.getCreatedAt();
 		this.modifiedAt = blog.getModifiedAt();
 		this.id = blog.getId();
 		this.name = blog.getName();
-		this.title1 = blog.getTitle();
+		this.title = blog.getTitle();
 	}
 }
