@@ -31,6 +31,7 @@ public class BlogService {
 	}
 
 	public Blog findById(Long id) {
+
 		return blogRepository.findById(id)
 				.orElseThrow(() -> new IllegalArgumentException("해당 아이디가 존재하지 않습니다."));
 	}
@@ -43,15 +44,15 @@ public class BlogService {
 
 	@Transactional
 	public String update(Long id, BlogRequestDto requestDto) {
-		Blog blogById = blogRepository.findById(id).orElseThrow(
-				() -> new IllegalArgumentException("해당 아이디가 존재하지 않습니다."));
+		Blog blogById = blogRepository.findById(id)
+				.orElseThrow(() -> new IllegalArgumentException("해당 아이디가 존재하지 않습니다."));
 		blogById.update(requestDto);
 		return "수정 완료";
 	}
 
 	public String delete(Long id) {
-		Blog blogById = blogRepository.findById(id).orElseThrow(
-				() -> new IllegalArgumentException("해당 아이디가 존재하지 않습니다."));
+		Blog blogById = blogRepository.findById(id)
+				.orElseThrow(() -> new IllegalArgumentException("해당 아이디가 존재하지 않습니다."));
 		blogRepository.deleteById(id);
 		return "삭제 완료 : " + blogById.getId();
 	}

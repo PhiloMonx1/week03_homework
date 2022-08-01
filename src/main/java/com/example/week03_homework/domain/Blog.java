@@ -24,12 +24,13 @@ public class Blog extends Timestamped{
 	private String content;
 
 
-	@OneToMany(cascade = CascadeType.REMOVE)
+//	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER) // fetch = FetchType.EAGER = commentList쿼리 묶어서 보내줌
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval=true)
 	@JsonManagedReference
 	private List<Comment> commentList;
 
-	@ManyToOne
-	@JoinColumn(name = "users_id")
+	@ManyToOne()
+	@JoinColumn(name = "username")
 	@JsonBackReference
 	private Users users;
 
@@ -45,10 +46,17 @@ public class Blog extends Timestamped{
 		this.content = requestDto.getContent();
 	}
 
-	public void update(BlogRequestDto requestDto){ // ***비밀번호 동일할 때 조건 추가 필요
+	public void update(BlogRequestDto requestDto){
 		this.name = requestDto.getUsername();
 		this.title = requestDto.getTitle();
 		this.content = requestDto.getContent();
+	}
+
+	public void addComment(Comment comment){
+		this.commentList.add(comment);
+	}
+	public void removeComment(Comment comment){
+		this.commentList.remove(comment);
 	}
 }
 

@@ -11,21 +11,18 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 public class Users {
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
-
+	@Id// 유저네임으로 FK주고 DB저장 되는 이름도 username로 바꿈
 	@Column(nullable = false)
 	private String username;
 
 	@Column(nullable = false)
 	private String password;
 
-	@OneToMany(cascade = CascadeType.REMOVE)
+	@OneToMany()
 	@JsonManagedReference
 	private List<Blog> blogList;
 
-	@OneToMany(cascade = CascadeType.REMOVE)
+	@OneToMany()
 	@JsonManagedReference
 	private List<Comment> commentList;
 }

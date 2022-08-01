@@ -1,5 +1,7 @@
 package com.example.week03_homework.domain;
 
+import com.example.week03_homework.dto.CommentRequestDto;
+import com.example.week03_homework.repository.CommentRepository;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,7 +11,7 @@ import javax.persistence.*;
 @Getter
 @NoArgsConstructor
 @Entity
-public class Comment {
+public class Comment extends Timestamped{
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
@@ -29,7 +31,19 @@ public class Comment {
 	private Blog blog;
 
 	@ManyToOne
-	@JoinColumn(name = "users_id")
+	@JoinColumn(name = "username")
 	@JsonBackReference
 	private Users users;
+
+	public Comment(CommentRequestDto commentRequestDto, Blog blog) {
+		this.name = "익명";
+		this.title = commentRequestDto.getTitle();
+		this.content = commentRequestDto.getContent();
+		this.blog = blog;
+	}
+
+	public void updata(CommentRequestDto commentRequestDto) {
+		this.title = commentRequestDto.getTitle();
+		this.content = commentRequestDto.getContent();
+	}
 }
