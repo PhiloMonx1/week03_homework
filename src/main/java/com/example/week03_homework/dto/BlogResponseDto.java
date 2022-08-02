@@ -1,6 +1,6 @@
 package com.example.week03_homework.dto;
 
-import com.example.week03_homework.domain.Blog;
+import com.example.week03_homework.entity.Blog;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 

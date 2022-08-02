@@ -1,6 +1,6 @@
 package com.example.week03_homework.service;
 
-import com.example.week03_homework.domain.Users;
+import com.example.week03_homework.entity.Users;
 import com.example.week03_homework.dto.UserRequestDto;
 import com.example.week03_homework.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;

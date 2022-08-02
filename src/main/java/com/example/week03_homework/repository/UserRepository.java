@@ -1,6 +1,6 @@
 package com.example.week03_homework.repository;
 
-import com.example.week03_homework.domain.Users;
+import com.example.week03_homework.entity.Users;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

@@ -1,4 +1,4 @@
-package com.example.week03_homework.domain;
+package com.example.week03_homework.entity;
 
 import lombok.Getter;
 import org.springframework.data.annotation.CreatedDate;

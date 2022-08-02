@@ -1,4 +1,4 @@
-package com.example.week03_homework.domain;
+package com.example.week03_homework.entity;
 
 import com.example.week03_homework.dto.BlogRequestDto;
 import com.fasterxml.jackson.annotation.JsonBackReference;

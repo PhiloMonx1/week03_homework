@@ -1,6 +1,6 @@
 package com.example.week03_homework.repository;
 
-import com.example.week03_homework.domain.Blog;
+import com.example.week03_homework.entity.Blog;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

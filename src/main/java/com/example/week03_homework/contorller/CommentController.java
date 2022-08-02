@@ -1,6 +1,6 @@
 package com.example.week03_homework.contorller;
 
-import com.example.week03_homework.domain.Comment;
+import com.example.week03_homework.entity.Comment;
 import com.example.week03_homework.dto.CommentRequestDto;
 import com.example.week03_homework.service.CommentService;
 import org.springframework.web.bind.annotation.*;

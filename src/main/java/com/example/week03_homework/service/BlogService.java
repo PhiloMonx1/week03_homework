@@ -1,6 +1,6 @@
 package com.example.week03_homework.service;
 
-import com.example.week03_homework.domain.Blog;
+import com.example.week03_homework.entity.Blog;
 import com.example.week03_homework.dto.BlogRequestDto;
 import com.example.week03_homework.dto.BlogResponseDto;
 import com.example.week03_homework.repository.BlogRepository;
