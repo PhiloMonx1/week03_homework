@@ -43,10 +43,13 @@ public class CommentService {
 	}
 
 	@Transactional
-	public String deteleComment(Long cmtId) {
+	public String deteleComment(Long blogId, Long cmtId) {
+		Blog blogById = blogRepository.findById(blogId)
+				.orElseThrow(() -> new NullPointerException("해당 아이디가 존재하지 않습니다."));
 		Comment comment = commentRepository.findById(cmtId)
 				.orElseThrow(() -> new IllegalArgumentException("해당 아이디가 존재하지 않습니다."));
-		commentRepository.deleteById(cmtId);
+		blogById.removeComment(comment);
+//		commentRepository.deleteById(cmtId); == 이걸로는 삭제 안된다! 블로그에서 지워야 해!!
 		return "삭제완료" + comment.getId(); 
 	}
 }
