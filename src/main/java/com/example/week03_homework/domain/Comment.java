@@ -1,7 +1,6 @@
 package com.example.week03_homework.domain;
 
 import com.example.week03_homework.dto.CommentRequestDto;
-import com.example.week03_homework.repository.CommentRepository;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
