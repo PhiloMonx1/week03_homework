@@ -36,6 +36,17 @@ public class Users {
 		this.role = role;
 	}
 
+	public Users(Users users, List<Blog> blogList){
+		this.username = users.username;
+		this.password = users.password;
+		this.role = users.role;
+		this.blogList = blogList;
+	}
+
+	public void addComment(Comment comment){
+		this.commentList.add(comment);
+	}
+
 	public void addBlog(Blog blog){
 		System.out.println("리스트 추가에");
 		System.out.println(blog.getId());

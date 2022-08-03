@@ -6,4 +6,5 @@ import lombok.Getter;
 public class BlogRequestDto {
 	private String title;
 	private String content;
+	private String username;
 }

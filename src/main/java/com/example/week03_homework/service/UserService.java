@@ -29,7 +29,7 @@ public class UserService {
 		UserRoleEnum role = UserRoleEnum.USER;
 
 		if(password.equals(password2)){
-			Optional<Users> User = userRepository.findByUsername(username);
+			Optional<Users> User = userRepository.findById(username);
 			if(User.isEmpty()){
 				Users newUser = new Users(username, passwordCry, role);
 				userRepository.save(newUser);

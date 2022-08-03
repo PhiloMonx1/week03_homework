@@ -10,11 +10,14 @@ import com.example.week03_homework.service.BlogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.EntityManager;
 import java.util.List;
 
 @RestController
 public class BlogController {
 	private final BlogService blogService;
+
+
 	private final UserRepository userRepository;// 로그인 구현 전 테이블 관계 매핑 테스트용
 
 	@Autowired
@@ -36,9 +39,7 @@ public class BlogController {
 
 	@PostMapping("/api/auth/post")
 	public Blog createBlog(@RequestBody BlogRequestDto blogRequestDto){
-		Users user = new Users("익명", "1234", UserRoleEnum.USER);
-		userRepository.save(user);
-		return blogService.creatPost(blogRequestDto, user);
+		return blogService.creatPost(blogRequestDto);
 	}
 
 	@PutMapping("/api/auth/post/{id}")

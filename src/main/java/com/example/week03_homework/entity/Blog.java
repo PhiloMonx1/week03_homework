@@ -35,8 +35,8 @@ public class Blog extends Timestamped{
 	private Users users;
 
 	public Blog(BlogRequestDto requestDto, Users users){
-//		this.name = "테스트";
-		this.name = users.getUsername();
+		this.name = "테스트";
+//		this.name = users.getUsername();
 		this.title = requestDto.getTitle();
 		this.content = requestDto.getContent();
 		this.users = users;

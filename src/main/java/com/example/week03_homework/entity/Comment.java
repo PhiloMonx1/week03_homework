@@ -41,6 +41,12 @@ public class Comment extends Timestamped{
 		this.blog = blog;
 	}
 
+	public Comment(CommentRequestDto commentRequestDto) {
+		this.name = "익명";
+		this.title = commentRequestDto.getTitle();
+		this.content = commentRequestDto.getContent();
+	}
+
 	public void updata(CommentRequestDto commentRequestDto) {
 		this.title = commentRequestDto.getTitle();
 		this.content = commentRequestDto.getContent();

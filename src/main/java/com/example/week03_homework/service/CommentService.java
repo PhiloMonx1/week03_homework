@@ -3,6 +3,8 @@ package com.example.week03_homework.service;
 import com.example.week03_homework.dto.CommentRequestDto;
 import com.example.week03_homework.entity.Blog;
 import com.example.week03_homework.entity.Comment;
+import com.example.week03_homework.entity.UserRoleEnum;
+import com.example.week03_homework.entity.Users;
 import com.example.week03_homework.repository.BlogRepository;
 import com.example.week03_homework.repository.CommentRepository;
 import org.springframework.stereotype.Service;
@@ -26,8 +28,20 @@ public class CommentService {
 	public Comment createComment(Long blogId, CommentRequestDto commentRequestDto) {
 		Blog blogById = blogRepository.findById(blogId)
 				.orElseThrow(() -> new NullPointerException("해당 아이디가 존재하지 않습니다."));
-		Comment comment = new Comment(commentRequestDto, blogById);
-		blogById.addComment(comment);
+
+		Users user = new Users("신짱구", "1234", UserRoleEnum.USER);
+
+//		Comment comment = new Comment(commentRequestDto, blogById);
+		List<Users> usersList = null;
+		usersList.add(user);
+
+		System.out.println(usersList.get(0));
+
+		Comment comment = new Comment(commentRequestDto);
+
+//		blogById.addComment(comment);
+		user.addComment(comment);
+
 		return comment;
 	}
 
