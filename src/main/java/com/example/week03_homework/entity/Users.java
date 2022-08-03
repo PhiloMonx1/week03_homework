@@ -48,16 +48,6 @@ public class Users {
 	}
 
 	public void addBlog(Blog blog){
-		System.out.println("리스트 추가에");
-		System.out.println(blog.getId());
-		System.out.println(blog.getTitle());
-		System.out.println(blog.getContent());
-		System.out.println(blog.getName());
-		System.out.println("여긴");
-		System.out.println(blog.getUsers().getUsername());
-		System.out.println(blog.getUsers().getPassword());
-		System.out.println(blog.getUsers().getRole());
-
 		this.blogList.add(blog);
 	}
 }
