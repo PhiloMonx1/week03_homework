@@ -28,20 +28,8 @@ public class CommentService {
 	public Comment createComment(Long blogId, CommentRequestDto commentRequestDto) {
 		Blog blogById = blogRepository.findById(blogId)
 				.orElseThrow(() -> new NullPointerException("해당 아이디가 존재하지 않습니다."));
-
-		Users user = new Users("신짱구", "1234", UserRoleEnum.USER);
-
-//		Comment comment = new Comment(commentRequestDto, blogById);
-		List<Users> usersList = null;
-		usersList.add(user);
-
-		System.out.println(usersList.get(0));
-
-		Comment comment = new Comment(commentRequestDto);
-
-//		blogById.addComment(comment);
-		user.addComment(comment);
-
+		Comment comment = new Comment(commentRequestDto, blogById);
+		blogById.addComment(comment);
 		return comment;
 	}
 

@@ -44,13 +44,11 @@ public class BlogService {
 				.orElseThrow(() -> new IllegalArgumentException("해당 아이디가 존재하지 않습니다."));
 	}
 
+//	@Transactional
 	public Blog creatPost(BlogRequestDto requestDto) {
 
 		Users byUsername = userRepository.findById(requestDto.getUsername())
 				.orElseThrow(()-> new IllegalArgumentException("잘못된 사용자입니다. 다시 로그인 후 시도해주세요."));
-
-		System.out.println(byUsername.getUsername());
-		System.out.println(byUsername.getPassword());
 
 		Blog blog = new Blog(requestDto, byUsername);
 
