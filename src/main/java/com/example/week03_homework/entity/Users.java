@@ -1,6 +1,5 @@
 package com.example.week03_homework.entity;
 
-import com.example.week03_homework.dto.UserRequestDto;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,15 +11,18 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 public class Users {
-
 	@Id// 유저네임으로 FK주고 DB저장 되는 이름도 username로 바꿈
-	@Column(nullable = false)
+	@Column(nullable = false, unique = true)
 	private String username;
 
 	@Column(nullable = false)
 	private String password;
 
-	@OneToMany()
+	@Column(nullable = false)
+	@Enumerated(value = EnumType.STRING)
+	private UserRoleEnum role;
+
+	@OneToMany(cascade = CascadeType.REFRESH)
 	@JsonManagedReference
 	private List<Blog> blogList;
 
@@ -28,8 +30,23 @@ public class Users {
 	@JsonManagedReference
 	private List<Comment> commentList;
 
-	public Users(UserRequestDto userRequestDto) {
-		this.username = userRequestDto.getUsername();
-		this.password = userRequestDto.getPassword();
+	public Users(String username, String password, UserRoleEnum role) {
+		this.username = username;
+		this.password = password;
+		this.role = role;
+	}
+
+	public void addBlog(Blog blog){
+		System.out.println("리스트 추가에");
+		System.out.println(blog.getId());
+		System.out.println(blog.getTitle());
+		System.out.println(blog.getContent());
+		System.out.println(blog.getName());
+		System.out.println("여긴");
+		System.out.println(blog.getUsers().getUsername());
+		System.out.println(blog.getUsers().getPassword());
+		System.out.println(blog.getUsers().getRole());
+
+		this.blogList.add(blog);
 	}
 }

@@ -1,6 +1,6 @@
 package com.example.week03_homework.contorller;
 
-import com.example.week03_homework.dto.UserRequestDto;
+import com.example.week03_homework.dto.SignupRequestDto;
 import com.example.week03_homework.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,7 +17,7 @@ public class UserController {
 	}
 
 	@PostMapping("/api/user/signup")
-	public String registerUser(@RequestBody UserRequestDto userRequestDto){
-		return userService.registerUser(userRequestDto);
+	public String registerUser(@RequestBody SignupRequestDto signupRequestDto){
+		return userService.registerUser(signupRequestDto);
 	}
 }

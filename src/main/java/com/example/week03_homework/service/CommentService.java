@@ -1,8 +1,8 @@
 package com.example.week03_homework.service;
 
+import com.example.week03_homework.dto.CommentRequestDto;
 import com.example.week03_homework.entity.Blog;
 import com.example.week03_homework.entity.Comment;
-import com.example.week03_homework.dto.CommentRequestDto;
 import com.example.week03_homework.repository.BlogRepository;
 import com.example.week03_homework.repository.CommentRepository;
 import org.springframework.stereotype.Service;

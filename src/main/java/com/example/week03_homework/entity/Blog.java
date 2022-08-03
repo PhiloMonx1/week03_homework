@@ -14,7 +14,7 @@ import java.util.List;
 @Entity
 public class Blog extends Timestamped{
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY) // IDENTITY로 바꿔주면 테이블마다 ID 따로 쌓인다.
 	private Long id;
 	@Column(nullable = false)
 	private String name;
@@ -34,20 +34,15 @@ public class Blog extends Timestamped{
 	@JsonBackReference
 	private Users users;
 
-	public Blog(String name, String title, String content) {
-		this.name = name;
-		this.title = title;
-		this.content = content;
-	}
-
-	public Blog(BlogRequestDto requestDto){
-		this.name = requestDto.getUsername();
+	public Blog(BlogRequestDto requestDto, Users users){
+//		this.name = "테스트";
+		this.name = users.getUsername();
 		this.title = requestDto.getTitle();
 		this.content = requestDto.getContent();
+		this.users = users;
 	}
 
 	public void update(BlogRequestDto requestDto){
-		this.name = requestDto.getUsername();
 		this.title = requestDto.getTitle();
 		this.content = requestDto.getContent();
 	}

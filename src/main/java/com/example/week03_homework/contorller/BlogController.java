@@ -3,6 +3,9 @@ package com.example.week03_homework.contorller;
 import com.example.week03_homework.entity.Blog;
 import com.example.week03_homework.dto.BlogRequestDto;
 import com.example.week03_homework.dto.BlogResponseDto;
+import com.example.week03_homework.entity.UserRoleEnum;
+import com.example.week03_homework.entity.Users;
+import com.example.week03_homework.repository.UserRepository;
 import com.example.week03_homework.service.BlogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -12,10 +15,12 @@ import java.util.List;
 @RestController
 public class BlogController {
 	private final BlogService blogService;
+	private final UserRepository userRepository;// 로그인 구현 전 테이블 관계 매핑 테스트용
 
 	@Autowired
-	public BlogController(BlogService blogService){
+	public BlogController(BlogService blogService, UserRepository userRepository){
 		this.blogService = blogService;
+		this.userRepository = userRepository;
 	}
 
 
@@ -31,7 +36,9 @@ public class BlogController {
 
 	@PostMapping("/api/auth/post")
 	public Blog createBlog(@RequestBody BlogRequestDto blogRequestDto){
-		return blogService.save(blogRequestDto);
+		Users user = new Users("익명", "1234", UserRoleEnum.USER);
+		userRepository.save(user);
+		return blogService.creatPost(blogRequestDto, user);
 	}
 
 	@PutMapping("/api/auth/post/{id}")

@@ -1,9 +1,11 @@
 package com.example.week03_homework.service;
 
-import com.example.week03_homework.entity.Blog;
 import com.example.week03_homework.dto.BlogRequestDto;
 import com.example.week03_homework.dto.BlogResponseDto;
+import com.example.week03_homework.entity.Blog;
+import com.example.week03_homework.entity.Users;
 import com.example.week03_homework.repository.BlogRepository;
+import com.example.week03_homework.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,10 +16,12 @@ import java.util.List;
 @Service
 public class BlogService {
 	private final BlogRepository blogRepository;
+	private final UserRepository userRepository;
 
 	@Autowired
-	public BlogService (BlogRepository blogRepository){
+	public BlogService (BlogRepository blogRepository, UserRepository userRepository){
 		this.blogRepository = blogRepository;
+		this.userRepository = userRepository;
 	}
 
 	@Transactional
@@ -36,9 +40,23 @@ public class BlogService {
 				.orElseThrow(() -> new IllegalArgumentException("해당 아이디가 존재하지 않습니다."));
 	}
 
-	public Blog save(BlogRequestDto requestDto) {
-		Blog blog = new Blog(requestDto);
+	@Transactional
+	public Blog creatPost(BlogRequestDto requestDto, Users users) {
+		Users byUsername = userRepository.findByUsername(users.getUsername())
+				.orElseThrow(()-> new IllegalArgumentException("잘못된 사용자입니다. 다시 로그인 후 시도해주세요."));
+
+		Blog blog = new Blog(requestDto, byUsername);
 		blogRepository.save(blog);
+
+		System.out.println("=======서비스2========");
+		System.out.println(blog.getId());
+		System.out.println(blog.getName());
+		System.out.println(blog.getTitle());
+		System.out.println(blog.getContent());
+		System.out.println("=======서비스2========");
+
+//		byUsername.addBlog(blog);
+//
 		return blog;
 	}
 
