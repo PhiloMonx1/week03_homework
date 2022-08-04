@@ -26,7 +26,7 @@ public class Users {
 	@JsonManagedReference
 	private List<Blog> blogList;
 
-	@OneToMany()
+	@OneToMany(cascade = CascadeType.REFRESH)
 	@JsonManagedReference
 	private List<Comment> commentList;
 
