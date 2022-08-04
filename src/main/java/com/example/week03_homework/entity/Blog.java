@@ -24,8 +24,8 @@ public class Blog extends Timestamped{
 	private String content;
 
 
-//	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER) // fetch = FetchType.EAGER = commentList쿼리 묶어서 보내줌
-	@OneToMany(cascade = CascadeType.ALL, orphanRemoval=true)
+//	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER) // fetch = FetchType.EAGER = commentList쿼리 묶어서 보내줌 , orphanRemoval=true
+	@OneToMany(cascade = CascadeType.ALL)
 	@JsonManagedReference
 	private List<Comment> commentList;
 
@@ -35,8 +35,8 @@ public class Blog extends Timestamped{
 	private Users users;
 
 	public Blog(BlogRequestDto requestDto, Users users){
-		this.name = "테스트";
-//		this.name = users.getUsername();
+//		this.name = "테스트";
+		this.name = users.getUsername();
 		this.title = requestDto.getTitle();
 		this.content = requestDto.getContent();
 		this.users = users;

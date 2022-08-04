@@ -44,7 +44,7 @@ public class BlogService {
 				.orElseThrow(() -> new IllegalArgumentException("해당 아이디가 존재하지 않습니다."));
 	}
 
-//	@Transactional
+	@Transactional
 	public Blog creatPost(BlogRequestDto requestDto) {
 
 		Users byUsername = userRepository.findById(requestDto.getUsername())
@@ -66,9 +66,15 @@ public class BlogService {
 		return "수정 완료";
 	}
 
-	public String delete(Long id) {
+//	@Transactional // 1.리스트 제거랑 2.레포랑 순서바뀌면 트랜젝셔널 붙여야함 
+	public String delete(Long id, BlogRequestDto requestDto) {
 		Blog blogById = blogRepository.findById(id)
 				.orElseThrow(() -> new IllegalArgumentException("해당 아이디가 존재하지 않습니다."));
+
+		Users byUsername = userRepository.findById(requestDto.getUsername())
+				.orElseThrow(()-> new IllegalArgumentException("잘못된 사용자입니다. 다시 로그인 후 시도해주세요."));
+
+		byUsername.removeBlog(blogById);
 		blogRepository.deleteById(id);
 		return "삭제 완료 : " + blogById.getId();
 	}

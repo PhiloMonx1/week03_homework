@@ -34,17 +34,12 @@ public class Comment extends Timestamped{
 	@JsonBackReference
 	private Users users;
 
-	public Comment(CommentRequestDto commentRequestDto, Blog blog) {
-		this.name = "익명";
+	public Comment(CommentRequestDto commentRequestDto, Blog blog, Users users) {
+		this.name = users.getUsername();
 		this.title = commentRequestDto.getTitle();
 		this.content = commentRequestDto.getContent();
 		this.blog = blog;
-	}
-
-	public Comment(CommentRequestDto commentRequestDto) {
-		this.name = "익명";
-		this.title = commentRequestDto.getTitle();
-		this.content = commentRequestDto.getContent();
+		this.users = users;
 	}
 
 	public void updata(CommentRequestDto commentRequestDto) {

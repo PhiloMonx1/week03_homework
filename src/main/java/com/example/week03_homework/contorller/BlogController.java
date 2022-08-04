@@ -48,8 +48,8 @@ public class BlogController {
 	}
 
 	@DeleteMapping("/api/auth/post/{id}")
-	public String deleteBlog(@PathVariable Long id){
-		return blogService.delete(id);
+	public String deleteBlog(@PathVariable Long id, @RequestBody BlogRequestDto requestDto){
+		return blogService.delete(id, requestDto);
 	}
 
 

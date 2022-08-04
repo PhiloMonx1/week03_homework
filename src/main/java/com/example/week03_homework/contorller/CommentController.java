@@ -31,7 +31,7 @@ public class CommentController {
 	}
 
 	@DeleteMapping("/api/auth/comment/{blogId}/{cmtId}")
-		public String deteleComment(@PathVariable Long blogId, @PathVariable Long cmtId){
-		return commentService.deteleComment(blogId, cmtId);
+		public String deteleComment(@PathVariable Long blogId, @PathVariable Long cmtId, @RequestBody CommentRequestDto commentRequestDto){
+		return commentService.deteleComment(blogId, cmtId, commentRequestDto);
 	}
 }

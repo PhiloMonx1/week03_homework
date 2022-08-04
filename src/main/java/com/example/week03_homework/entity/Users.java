@@ -43,11 +43,19 @@ public class Users {
 		this.blogList = blogList;
 	}
 
+	public void addBlog(Blog blog){
+		this.blogList.add(blog);
+	}
+	public void removeBlog(Blog blog){
+		this.blogList.remove(blog);
+	}
+
 	public void addComment(Comment comment){
 		this.commentList.add(comment);
 	}
 
-	public void addBlog(Blog blog){
-		this.blogList.add(blog);
+	public void removeComment(Comment comment){
+		this.commentList.remove(comment);
 	}
+
 }
