@@ -37,4 +37,9 @@ public class UserService {
 			}else return "이미 존재하는 아이디입니다.";
 		}else return "비밀번호가 맞지 않습니다.";
 	}
+
+	public Users findUser(String username) {
+		return userRepository.findById(username)
+				.orElseThrow(() -> new NullPointerException("존재하지 않는 사용자입니다."));
+	}
 }

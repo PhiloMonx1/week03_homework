@@ -26,7 +26,7 @@ public class Users {
 	@JsonManagedReference
 	private List<Blog> blogList;
 
-	@OneToMany
+	@OneToMany(mappedBy = "users")
 	@JsonManagedReference
 	private List<Comment> commentList;
 
@@ -34,13 +34,6 @@ public class Users {
 		this.username = username;
 		this.password = password;
 		this.role = role;
-	}
-
-	public Users(Users users, List<Blog> blogList){
-		this.username = users.username;
-		this.password = users.password;
-		this.role = users.role;
-		this.blogList = blogList;
 	}
 
 	public void addBlog(Blog blog){
