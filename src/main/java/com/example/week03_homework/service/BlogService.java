@@ -44,7 +44,7 @@ public class BlogService {
 				.orElseThrow(() -> new IllegalArgumentException("해당 아이디가 존재하지 않습니다."));
 	}
 
-	@Transactional
+//	@Transactional
 	public Blog creatPost(BlogRequestDto requestDto) {
 
 		Users byUsername = userRepository.findById(requestDto.getUsername())
