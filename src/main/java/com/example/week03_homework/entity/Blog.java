@@ -24,7 +24,7 @@ public class Blog extends Timestamped{
 	private String content;
 
 
-//	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER) // fetch = FetchType.EAGER = commentList쿼리 묶어서 보내줌 , orphanRemoval=true
+//	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER) // fetch = FetchType.EAGER = commentList쿼리 묶어서 보내줌 -디폴트() , orphanRemoval=true
 	@OneToMany(cascade = CascadeType.ALL)
 	@JsonManagedReference
 	private List<Comment> commentList;

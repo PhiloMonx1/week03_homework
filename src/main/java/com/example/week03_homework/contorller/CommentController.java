@@ -25,13 +25,13 @@ public class CommentController {
 		return commentService.createComment(blogId, commentRequestDto);
 	}
 
-	@PutMapping("/api/auth/comment/{blogId}/{cmtId}")
-	public String updateComment(@PathVariable Long blogId, @PathVariable Long cmtId, @RequestBody CommentRequestDto commentRequestDto){
-		return commentService.updateComment(blogId, cmtId, commentRequestDto);
+	@PutMapping("/api/auth/comment/{cmtId}")
+	public String updateComment(@PathVariable Long cmtId, @RequestBody CommentRequestDto commentRequestDto){
+		return commentService.updateComment(cmtId, commentRequestDto);
 	}
 
-	@DeleteMapping("/api/auth/comment/{blogId}/{cmtId}")
-		public String deteleComment(@PathVariable Long blogId, @PathVariable Long cmtId, @RequestBody CommentRequestDto commentRequestDto){
-		return commentService.deteleComment(blogId, cmtId, commentRequestDto);
+	@DeleteMapping("/api/auth/comment/{cmtId}")
+		public String deteleComment(@PathVariable Long cmtId){
+		return commentService.deteleComment(cmtId);
 	}
 }

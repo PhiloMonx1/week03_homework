@@ -36,9 +36,10 @@ public class CommentService {
 		    .orElseThrow(() -> new NullPointerException("잘못된 사용자입니다. 다시 로그인 후 시도해주세요."));
 
 		Comment comment = new Comment(commentRequestDto, blogById, userById);
-
 		blogById.addComment(comment);
-		userById.addComment(comment);
+//		commentRepository.save(comment);
+
+//		userById.addComment(comment); // 양방향 관계에서는 안줘도 되는듯하다 -> 백기선 님은 주라고 했던 것 같은데 주고 안주고 차이 알아낼것!
 
 		return comment;
 	}
@@ -48,25 +49,27 @@ public class CommentService {
 	}
 
 	@Transactional
-	public String updateComment(Long blogId, Long cmtId, CommentRequestDto commentRequestDto) {
-		Comment comment = commentRepository.findByBlog_IdAndId(blogId, cmtId);
+	public String updateComment(Long cmtId, CommentRequestDto commentRequestDto) {
+		Comment comment = commentRepository.findById(cmtId)
+				.orElseThrow(() -> new IllegalArgumentException("해당 아이디가 존재하지 않습니다."));
 		comment.updata(commentRequestDto);
 		return "수정완료";
 	}
 
 //	@Transactional
-	public String deteleComment(Long blogId, Long cmtId, CommentRequestDto commentRequestDto) {
-		Blog blogById = blogRepository.findById(blogId)
-				.orElseThrow(() -> new NullPointerException("해당 아이디가 존재하지 않습니다."));
-
+	public String deteleComment(Long cmtId) {
 		Comment comment = commentRepository.findById(cmtId)
 				.orElseThrow(() -> new IllegalArgumentException("해당 아이디가 존재하지 않습니다."));
 
-		Users userbyId = userRepository.findById(commentRequestDto.getUsername())
-				.orElseThrow(() -> new NullPointerException("잘못된 사용자입니다. 다시 로그인 후 시도해주세요."));
+		Blog blogById = blogRepository.findById(comment.getBlog().getId())
+				.orElseThrow(() -> new NullPointerException("해당 아이디가 존재하지 않습니다."));
 
 		blogById.removeComment(comment);
-		userbyId.removeComment(comment);
+
+//		Users userbyId = userRepository.findById(comment.getUsers().getUsername())
+//				.orElseThrow(() -> new NullPointerException("잘못된 사용자입니다. 다시 로그인 후 시도해주세요."));
+
+//		userbyId.removeComment(comment); //양방향 관계에서는 안줘도 되는듯 하다 -> 백기선 님은 주라고 했던 것 같은데 주고 안주고 차이 알아낼것!
 
 		commentRepository.deleteById(cmtId);
 
